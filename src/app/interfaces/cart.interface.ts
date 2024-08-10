@@ -6,6 +6,5 @@ export interface CartItem extends FoodItem {
 
 export interface Cart {
   items: CartItem[];
-  totalQuantity: number;
   totalPrice: number;
 }

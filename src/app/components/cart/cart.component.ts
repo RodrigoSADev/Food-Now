@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, Signal } from '@angular/core';
 import { Cart } from 'src/app/interfaces/cart.interface';
+import { FoodItem } from 'src/app/interfaces/food.interface';
 import { CartService } from 'src/app/services/cart.service';
 
 @Component({
@@ -13,6 +14,10 @@ import { CartService } from 'src/app/services/cart.service';
 export class CartComponent {
   cartService = inject(CartService);
   cart$: Signal<Cart> = this.cartService.cart;
+
+  addToCart(food: FoodItem): void {
+    this.cartService.addToCart(food);
+  }
 
   removeItem(productId: number): void {
     this.cartService.removeFromCart(productId);

@@ -10,13 +10,12 @@ export class CartService {
 
   cart: Signal<Cart> = computed(() => {
     const items = this.cartItems();
-    const totalQuantity = items.reduce((sum, item) => sum + item.quantity, 0);
     const totalPrice = items.reduce(
       (sum, item) => sum + item.price * item.quantity,
       0
     );
 
-    return { items, totalQuantity, totalPrice };
+    return { items, totalPrice };
   });
 
   private updateLocalStorage(): void {
@@ -66,51 +65,4 @@ export class CartService {
     this.cartItems.update(() => []);
     this.updateLocalStorage();
   }
-  // cartItems = signal<CartItem[]>([]);
-
-  // cart: Signal<Cart> = computed(() => {
-  //   const items = this.cartItems();
-  //   const totalQuantity = items.reduce((sum, item) => sum + item.quantity, 0);
-  //   const totalPrice = items.reduce(
-  //     (sum, item) => sum + item.price * item.quantity,
-  //     0
-  //   );
-  //   return { items, totalQuantity, totalPrice };
-  // });
-
-  // updateCartItem(food: FoodItem, quantityChange: number): void {
-  //   const existingItem = this.cartItems().find((item) => item.id === food.id);
-
-  //   if (existingItem) {
-  //     this.cartItems.update((cartItems) =>
-  //       cartItems
-  //         .map((item) =>
-  //           item.id === food.id
-  //             ? { ...item, quantity: item.quantity + quantityChange }
-  //             : item
-  //         )
-  //         .filter((item) => item.quantity > 0)
-  //     );
-  //   } else if (quantityChange > 0) {
-  //     this.cartItems.update((cartItems) => [
-  //       ...cartItems,
-  //       { ...food, quantity: 1 },
-  //     ]);
-  //   }
-  // }
-
-  // addToCart(food: FoodItem): void {
-  //   this.updateCartItem(food, 1);
-  // }
-
-  // removeFromCart(foodId: number): void {
-  //   const product = this.cartItems().find((item) => item.id === foodId);
-  //   if (product) {
-  //     this.updateCartItem(product, -1);
-  //   }
-  // }
-
-  // clearCart(): void {
-  //   this.cartItems.update(() => []);
-  // }
 }
