@@ -1,0 +1,21 @@
+<section>
+  <button routerLink="/hamburguer">Hamburguer</button>
+  <button routerLink="/pizza">Pizza</button>
+  <button routerLink="/bebidas">Bebidas</button>
+  @if (isLoading) {
+  <p>Carregando...</p>
+  } @if (!isLoading && currentFoods.length > 0) {
+
+  <div>
+    <h2>Lista de {{ currentFoodType | titlecase }}</h2>
+    <ul>
+      <li *ngFor="let food of currentFoods">
+        {{ food.name }} - {{ food.price | currency : 'BRL' : 'symbol' }} -
+        Disponível: {{ food.quantity }}
+      </li>
+    </ul>
+  </div>
+  } @if (!isLoading && currentFoods.length === 0) {
+  <p>Nenhum item encontrado.</p>
+  }
+</section>
