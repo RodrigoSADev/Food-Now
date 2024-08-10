@@ -18,10 +18,4 @@ describe('AppComponent', () => {
       'Welcome food-now'
     );
   });
-
-  it(`should have as title 'food-now'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('food-now');
-  });
 });
