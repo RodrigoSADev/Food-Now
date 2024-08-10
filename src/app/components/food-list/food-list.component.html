@@ -10,8 +10,8 @@
     <h2>Lista de {{ currentFoodType | titlecase }}</h2>
     <ul>
       <li *ngFor="let food of currentFoods">
-        {{ food.name }} - {{ food.price | currency : 'BRL' : 'symbol' }} -
-        Disponível: {{ food.quantity }}
+        {{ food.name }} - {{ food.price | currency : 'BRL' : 'symbol' }}
+        <button (click)="addToCart(food)">+</button>
       </li>
     </ul>
   </div>

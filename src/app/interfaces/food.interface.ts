@@ -2,7 +2,7 @@ export interface FoodItem {
   id: number;
   name: string;
   price: number;
-  quantity: number;
+  quantity?: number;
 }
 
 export interface FoodData {

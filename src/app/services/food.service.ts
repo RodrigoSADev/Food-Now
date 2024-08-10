@@ -7,7 +7,8 @@ import { FoodData } from '../interfaces/food.interface';
   providedIn: 'root',
 })
 export class FoodService {
-  private readonly apiUrl = 'https://food-now-api.vercel.app/foods';
+  private readonly apiUrl =
+    'https://food-now-api-rodrigo-silvas-projects-75bfc7dd.vercel.app/foods';
   httpClient = inject(HttpClient);
 
   getFoods(): Observable<FoodData> {

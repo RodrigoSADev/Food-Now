@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { FoodData, FoodItem } from 'src/app/interfaces/food.interface';
+import { CartService } from 'src/app/services/cart.service';
 import { FoodService } from 'src/app/services/food.service';
 
 @Component({
@@ -19,6 +20,7 @@ export class FoodListComponent implements OnInit {
 
   actRoute = inject(ActivatedRoute);
   foodService = inject(FoodService);
+  cartService = inject(CartService);
 
   ngOnInit(): void {
     this.foodService.getFoods().subscribe({
@@ -39,5 +41,9 @@ export class FoodListComponent implements OnInit {
         this.isLoading = false;
       },
     });
+  }
+
+  addToCart(food: FoodItem): void {
+    this.cartService.addToCart(food);
   }
 }
