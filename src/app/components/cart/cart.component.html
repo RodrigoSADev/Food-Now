@@ -1,22 +1,49 @@
 <section>
-  @if (cart$(); as cart) {
-  <h2>Seu Carrinho</h2>
-  <ul>
-    @for (item of cart.items; track item.id) {
-    <li>
-      {{ item.name }} - <strong>{{ item.quantity }}</strong> x
-      {{ item.price | currency }}
-      <button (click)="addToCart(item)">+</button>
-      <button (click)="removeItem(item.id)">-</button>
-    </li>
-    }
-  </ul>
-  @if (cart.totalPrice > 0) {
-  <div>
-    <p>Valor Total: {{ cart.totalPrice | currency : 'BRL' : 'symbol' }}</p>
-    <button (click)="clearCart()">Limpar Carrinho</button>
+  <div
+    class="modal fade"
+    id="cartModal"
+    tabindex="-1"
+    aria-labelledby="cartModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="cartModalLabel">Seu Carrinho</h1>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          @if (cart$(); as cart) {
+          <ul>
+            @for (item of cart.items; track item.id) {
+            <li>
+              {{ item.name }} - <strong>{{ item.quantity }}</strong> x
+              {{ item.price | currency }}
+              <button (click)="addToCart(item)">+</button>
+              <button (click)="removeItem(item.id)">-</button>
+            </li>
+            }
+          </ul>
+          @if (cart.totalPrice > 0) {
+          <div>
+            <p>
+              Valor Total: {{ cart.totalPrice | currency : 'BRL' : 'symbol' }}
+            </p>
+            <button (click)="clearCart()">Limpar Carrinho</button>
+          </div>
+          } @if (cart.totalPrice === 0) {
+          <p>Seu carrinho está vazio.</p>
+          } }
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success">Pagamento</button>
+        </div>
+      </div>
+    </div>
   </div>
-  } @if (cart.totalPrice === 0) {
-  <p>Seu carrinho está vazio.</p>
-  } }
 </section>
