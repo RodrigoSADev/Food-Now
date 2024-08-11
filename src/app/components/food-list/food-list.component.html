@@ -1,7 +1,30 @@
-<section>
-  <button routerLink="/hamburguer">Hamburguer</button>
-  <button routerLink="/pizza">Pizza</button>
-  <button routerLink="/bebidas">Bebidas</button>
+<section class="container mt-5">
+  <div class="d-flex gap-3 justify-content-center">
+    <button
+      type="button"
+      class="btn btn-outline-danger"
+      routerLink="/hamburguer"
+      routerLinkActive="active"
+    >
+      Hamburguer
+    </button>
+    <button
+      type="button"
+      class="btn btn-outline-danger"
+      routerLink="/pizza"
+      routerLinkActive="active"
+    >
+      Pizza
+    </button>
+    <button
+      type="button"
+      class="btn btn-outline-danger"
+      routerLink="/bebidas"
+      routerLinkActive="active"
+    >
+      Bebidas
+    </button>
+  </div>
   @if (isLoading) {
   <p>Carregando...</p>
   } @if (!isLoading && currentFoods.length > 0) {
