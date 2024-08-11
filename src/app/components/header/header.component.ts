@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject, Signal } from '@angular/core';
 import { CartComponent } from '../cart/cart.component';
+import { Cart } from 'src/app/interfaces/cart.interface';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-header',
@@ -8,4 +10,7 @@ import { CartComponent } from '../cart/cart.component';
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })
-export class HeaderComponent {}
+export class HeaderComponent {
+  cartService = inject(CartService);
+  cart$: Signal<Cart> = this.cartService.cart;
+}

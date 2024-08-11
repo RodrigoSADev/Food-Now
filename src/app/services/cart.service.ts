@@ -10,12 +10,13 @@ export class CartService {
 
   cart: Signal<Cart> = computed(() => {
     const items = this.cartItems();
+    const totalQuantity = items.reduce((sum, item) => sum + item.quantity, 0);
     const totalPrice = items.reduce(
       (sum, item) => sum + item.price * item.quantity,
       0
     );
 
-    return { items, totalPrice };
+    return { items, totalQuantity, totalPrice };
   });
 
   private updateLocalStorage(): void {

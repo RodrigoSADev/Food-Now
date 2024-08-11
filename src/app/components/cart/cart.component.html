@@ -29,14 +29,14 @@
             </li>
             }
           </ul>
-          @if (cart.totalPrice > 0) {
+          @if (cart.totalQuantity > 0) {
           <div>
             <p>
               Valor Total: {{ cart.totalPrice | currency : 'BRL' : 'symbol' }}
             </p>
             <button (click)="clearCart()">Limpar Carrinho</button>
           </div>
-          } @if (cart.totalPrice === 0) {
+          } @if (cart.totalQuantity === 0) {
           <p>Seu carrinho está vazio.</p>
           } }
         </div>
