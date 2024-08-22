@@ -82,18 +82,6 @@
       "options": {
         "jestConfig": "jest.config.ts"
       }
-    },
-    "e2e": {
-      "executor": "@nrwl/playwright:playwright",
-      "options": {
-        "playwrightConfig": "apps/<nome-do-projeto>/playwright.config.ts",
-        "devServerTarget": "<nome-do-projeto>:serve"
-      },
-      "configurations": {
-        "production": {
-          "devServerTarget": "<nome-do-projeto>:serve:production"
-        }
-      }
     }
   }
 }
