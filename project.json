@@ -82,6 +82,12 @@
       "options": {
         "jestConfig": "jest.config.ts"
       }
+    },
+    "e2e": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "echo 'No E2E tests configured'"
+      }
     }
   }
 }
