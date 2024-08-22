@@ -1,8 +1,10 @@
 export interface FoodItem {
   id: number;
   name: string;
+  description: string;
   price: number;
-  quantity?: number;
+  image: string;
+  alt: string;
 }
 
 export interface FoodData {
