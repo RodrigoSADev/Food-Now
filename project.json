@@ -84,7 +84,7 @@
       }
     },
     "e2e": {
-      "executor": "nx:run-commands",
+      "executor": "npx playwright test",
       "options": {
         "command": "echo 'No E2E tests configured'"
       }
