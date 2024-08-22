@@ -84,9 +84,15 @@
       }
     },
     "e2e": {
-      "executor": "npx playwright test",
+      "executor": "@nrwl/playwright:playwright",
       "options": {
-        "command": "echo 'No E2E tests configured'"
+        "playwrightConfig": "apps/<nome-do-projeto>/playwright.config.ts",
+        "devServerTarget": "<nome-do-projeto>:serve"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "<nome-do-projeto>:serve:production"
+        }
       }
     }
   }
