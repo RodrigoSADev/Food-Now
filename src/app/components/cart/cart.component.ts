@@ -16,6 +16,7 @@ import Swal from 'sweetalert2';
 export class CartComponent {
   cartService = inject(CartService);
   cart$: Signal<Cart> = this.cartService.cart;
+  deliveryValue = 5;
 
   addItem(food: FoodItem): void {
     this.cartService.addToCart(food);

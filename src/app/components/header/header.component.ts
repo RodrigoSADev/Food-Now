@@ -1,12 +1,12 @@
 import { Component, inject, Signal } from '@angular/core';
-import { CartComponent } from '../cart/cart.component';
 import { Cart } from 'src/app/interfaces/cart.interface';
 import { CartService } from 'src/app/services/cart.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [CartComponent],
+  imports: [RouterLink],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })

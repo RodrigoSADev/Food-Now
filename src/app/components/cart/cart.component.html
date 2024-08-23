@@ -1,60 +1,83 @@
-<section>
+<section class="bg-body-tertiary p-4 rounded">
   @if (cart$(); as cart) {
-  <div
-    routerLink="/payment"
-    class="modal fade"
-    id="cartModal"
-    tabindex="-1"
-    aria-labelledby="cartModalLabel"
-    aria-hidden="true"
-  >
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="cartModalLabel">Seu Carrinho</h1>
-          <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="modal"
-            aria-label="Close"
-          ></button>
-        </div>
-        <div class="modal-body">
-          @for (item of cart.items; track item.id) {
-          <p>
-            {{ item.name }} - <strong>{{ item.quantity }}</strong
-            >x
-            {{ item.price | currency : 'BRL' : 'symbol' }}
-            <button class="btn btn-success btn-sm" (click)="addItem(item)">
-              +
-            </button>
-
-            <button class="btn btn-danger btn-sm" (click)="removeItem(item.id)">
-              -
-            </button>
+  <div>
+    @for (item of cart.items; track item.id) {
+    <div class="d-flex gap-3 mb-2">
+      <img
+        src="{{ item.image }}"
+        style="max-width: 75px"
+        class="rounded"
+        alt="{{ item.alt }}"
+      />
+      <div>
+        <p class="fw-bold m-0">
+          {{ item.name }}
+        </p>
+        <div class="d-flex align-items-center gap-2">
+          <button class="btn m-0 p-0" (click)="removeItem(item.id)">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-dash-square"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"
+              />
+              <path
+                d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8"
+              />
+            </svg>
+          </button>
+          <p class="m-0 pt-1">
+            {{ item.quantity }}
           </p>
-          } @if (cart.totalQuantity > 0) {
-          <div>
-            <p>
-              Valor Total: {{ cart.totalPrice | currency : 'BRL' : 'symbol' }}
-            </p>
-          </div>
-          } @if (cart.totalQuantity === 0) {
-          <p>Adicione produtos ao carrinho!</p>
-          }
-        </div>
-        @if (cart.totalQuantity > 0) {
-        <div class="modal-footer d-flex justify-content-between">
-          <button class="btn btn-danger" (click)="clearCart()">
-            Limpar Carrinho
+          <button class="btn m-0 p-0" (click)="addItem(item)">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-plus-square"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"
+              />
+              <path
+                d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"
+              />
+            </svg>
           </button>
-          <button type="button" class="btn btn-success" disabled>
-            Pagamento
-          </button>
         </div>
-        }
       </div>
+      <p class="fw-bold">{{ item.price | currency : 'BRL' : 'symbol' }}</p>
+    </div>
+    }
+    <div class="d-flex justify-content-between">
+      <p class="text-secondary m-0">Total de Itens:</p>
+      <p class="text-secondary m-0">
+        {{ cart.totalPrice | currency : 'BRL' : 'symbol' }}
+      </p>
+    </div>
+    <div class="d-flex justify-content-between">
+      <p class="text-secondary">Entrega:</p>
+      <p class="text-secondary">
+        {{ deliveryValue | currency : 'BRL' : 'symbol' }}
+      </p>
+    </div>
+    <div class="d-flex justify-content-between">
+      <p class="fw-bold">Valor Total:</p>
+      <p class="fw-bold">
+        {{ cart.totalPrice + deliveryValue | currency : 'BRL' : 'symbol' }}
+      </p>
+    </div>
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-success">Confirmar Pedido</button>
     </div>
   </div>
+
   }
 </section>
