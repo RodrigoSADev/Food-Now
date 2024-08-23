@@ -4,6 +4,7 @@ import { ActivatedRoute, RouterLink, RouterLinkActive } from '@angular/router';
 import { FoodData, FoodItem } from 'src/app/interfaces/food.interface';
 import { CartService } from 'src/app/services/cart.service';
 import { FoodService } from 'src/app/services/food.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-food-list',
@@ -45,5 +46,16 @@ export class FoodListComponent implements OnInit {
 
   addToCart(food: FoodItem): void {
     this.cartService.addToCart(food);
+    Swal.fire({
+      toast: true,
+      position: 'top-end',
+      icon: 'success',
+      title: 'Adicionado ao carrinho!',
+      text: `${food.name} adicionado com sucesso!`,
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      html: '',
+    });
   }
 }
