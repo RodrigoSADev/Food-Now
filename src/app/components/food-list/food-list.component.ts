@@ -53,9 +53,9 @@ export class FoodListComponent implements OnInit {
       title: 'Adicionado ao carrinho!',
       text: `${food.name} adicionado com sucesso!`,
       showConfirmButton: false,
+      showCloseButton: true,
       timer: 3000,
       timerProgressBar: true,
-      html: '',
     });
   }
 }
