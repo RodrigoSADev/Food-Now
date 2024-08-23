@@ -1,6 +1,7 @@
 <section>
   @if (cart$(); as cart) {
   <div
+    routerLink="/payment"
     class="modal fade"
     id="cartModal"
     tabindex="-1"
@@ -19,27 +20,27 @@
           ></button>
         </div>
         <div class="modal-body">
-          <ul>
-            @for (item of cart.items; track item.id) {
-            <li>
-              {{ item.name }} - <strong>{{ item.quantity }}</strong
-              >x
-              {{ item.price | currency : 'BRL' : 'symbol' }}
-              <button class="btn btn-success" (click)="addItem(item)">+</button>
-              <button class="btn btn-danger" (click)="removeItem(item.id)">
-                -
-              </button>
-            </li>
-            }
-          </ul>
-          @if (cart.totalQuantity > 0) {
+          @for (item of cart.items; track item.id) {
+          <p>
+            {{ item.name }} - <strong>{{ item.quantity }}</strong
+            >x
+            {{ item.price | currency : 'BRL' : 'symbol' }}
+            <button class="btn btn-success btn-sm" (click)="addItem(item)">
+              +
+            </button>
+
+            <button class="btn btn-danger btn-sm" (click)="removeItem(item.id)">
+              -
+            </button>
+          </p>
+          } @if (cart.totalQuantity > 0) {
           <div>
             <p>
               Valor Total: {{ cart.totalPrice | currency : 'BRL' : 'symbol' }}
             </p>
           </div>
           } @if (cart.totalQuantity === 0) {
-          <p>Seu carrinho está vazio.</p>
+          <p>Adicione produtos ao carrinho!</p>
           }
         </div>
         @if (cart.totalQuantity > 0) {

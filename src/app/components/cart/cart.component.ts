@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, Signal } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { Cart } from 'src/app/interfaces/cart.interface';
 import { FoodItem } from 'src/app/interfaces/food.interface';
 import { CartService } from 'src/app/services/cart.service';
@@ -8,7 +9,7 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-cart',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.scss',
 })
