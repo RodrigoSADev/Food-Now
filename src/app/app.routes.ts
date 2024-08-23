@@ -7,10 +7,10 @@ export const appRoutes: Route[] = [
   { path: 'bebidas', component: FoodListComponent },
   { path: '', redirectTo: '/hamburguer', pathMatch: 'full' },
   {
-    path: 'payment',
+    path: 'checkout',
     loadComponent: () =>
-      import('./components/payment/payment.component').then(
-        (m) => m.PaymentComponent
+      import('./pages/checkout/checkout.component').then(
+        (m) => m.CheckoutComponent
       ),
   },
 ];
