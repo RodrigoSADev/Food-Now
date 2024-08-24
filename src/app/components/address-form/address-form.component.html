@@ -1,4 +1,4 @@
-<form class="bg-body-tertiary p-4 rounded">
+<form [formGroup]="addressForm" class="bg-body-tertiary p-4 rounded">
   <h5>Endereço de Entrega</h5>
   <p>Informe o endereço onde deseja receber seu pedido.</p>
   <div class="row">
@@ -8,7 +8,9 @@
           type="text"
           class="form-control"
           id="floatingCep"
-          placeholder="Password"
+          placeholder="CEP"
+          formControlName="cep"
+          (blur)="onBlurCep()"
         />
         <label for="floatingCep">CEP</label>
       </div>
@@ -19,7 +21,8 @@
           type="text"
           class="form-control"
           id="floatingCity"
-          placeholder="Password"
+          placeholder="Cidade"
+          formControlName="cidade"
         />
         <label for="floatingCity">Cidade</label>
       </div>
@@ -32,7 +35,8 @@
           type="text"
           class="form-control"
           id="floatingNeighborhood"
-          placeholder="Password"
+          placeholder="Bairro"
+          formControlName="bairro"
         />
         <label for="floatingNeighborhood">Bairro</label>
       </div>
@@ -43,7 +47,8 @@
           type="text"
           class="form-control"
           id="flotingStreet"
-          placeholder="Password"
+          placeholder="Rua"
+          formControlName="rua"
         />
         <label for="flotingStreet">Rua</label>
       </div>
@@ -56,7 +61,8 @@
           type="text"
           class="form-control"
           id="floatingNumber"
-          placeholder="Password"
+          placeholder="Número"
+          formControlName="numero"
         />
         <label for="floatingNumber">Número</label>
       </div>
@@ -67,25 +73,24 @@
           type="text"
           class="form-control"
           id="floatingComplement"
-          placeholder="Password"
+          placeholder="Complemento"
+          formControlName="complemento"
         />
-        <label for="floatingComplement"
-          >Complemento <span class="text-secondary">(Opcional)</span></label
-        >
+        <label for="floatingComplement">
+          Complemento <span class="text-secondary">(Opcional)</span>
+        </label>
       </div>
     </div>
   </div>
+  <div class="form-check mt-3">
+    <input
+      class="form-check-input"
+      type="checkbox"
+      id="flexCheckDefault"
+      formControlName="saveAddress"
+    />
+    <label class="form-check-label" for="flexCheckDefault">
+      Deseja salvar o endereço para próximas compras?
+    </label>
+  </div>
 </form>
-<!-- todo salvar para a próxima compra -->
-
-<!-- <?xml version="1.0" encoding="UTF-8"?>
-<xmlcep>
-  <cep>01001-000</cep> cep
-  <localidade>São Paulo</localidade> cidade
-  <bairro>Sé</bairro> bairro
-  <logradouro>Praça da Sé</logradouro> rua
-    numero não retorna
-  <complemento>lado ímpar</complemento> complemento
-  
-  <uf>SP</uf>
-</xmlcep> -->
