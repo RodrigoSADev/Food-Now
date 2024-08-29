@@ -18,16 +18,6 @@ export class PaymentFormComponent {
   formBuild = inject(FormBuilder);
 
   paymentForm = this.formBuild.group({
-    paymentMethod: [null as string | null, Validators.required],
+    paymentMethod: ['', Validators.required],
   });
-
-  onSubmit() {
-    if (this.paymentForm.valid) {
-      const selectedPayment = this.paymentForm.value.paymentMethod;
-      console.log('Forma de pagamento selecionada:', selectedPayment);
-      // Adicione a lógica para enviar os dados do formulário
-    } else {
-      console.log('Por favor, selecione uma forma de pagamento.');
-    }
-  }
 }
