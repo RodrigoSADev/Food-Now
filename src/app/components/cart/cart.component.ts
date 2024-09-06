@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, Signal } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { Cart } from 'src/app/interfaces/cart.interface';
 import { FoodItem } from 'src/app/interfaces/food.interface';
 import { CartService } from 'src/app/services/cart.service';
@@ -17,6 +17,7 @@ import { CheckoutService } from 'src/app/services/checkout.service';
 export class CartComponent {
   checkoutService = inject(CheckoutService);
   cartService = inject(CartService);
+  router = inject(Router);
 
   cart$: Signal<Cart> = this.cartService.cart;
   deliveryValue = 5;
@@ -55,13 +56,9 @@ export class CartComponent {
     const paymentValid = this.checkoutService.validatePayment();
     const addressValid = this.checkoutService.validateAddress();
 
-    console.log('Address from service: ', this.checkoutService.address());
-
     if (paymentValid && addressValid) {
-      console.log('Pedido confirmado com:', {
-        payment: this.checkoutService.getPaymentMethod(),
-        address: this.checkoutService.getAddress(),
-      });
+      this.router.navigate(['/confirm-order']);
+      this.cartService.clearCart();
     } else {
       if (!paymentValid) {
         this.checkoutService.showPaymentErrorMessage.set(true);
@@ -72,20 +69,5 @@ export class CartComponent {
         console.log('Endereço inválido, faltam informações obrigatórias.');
       }
     }
-  }
-
-  clearCart(): void {
-    this.cartService.clearCart();
-    Swal.fire({
-      toast: true,
-      position: 'top-end',
-      icon: 'success',
-      title: 'Carrinho limpo!',
-      text: 'Todos os itens foram removidos do carrinho.',
-      showConfirmButton: false,
-      showCloseButton: true,
-      timer: 3000,
-      timerProgressBar: true,
-    });
   }
 }
