@@ -1,6 +1,9 @@
 <section class="container mt-4">
   @if (cart$().totalQuantity > 0 && cart$().totalPrice > 0) {
-  <h2 class="text-center mb-4">Finalize seu pedido</h2>
+  <div class="mb-4 d-flex align-items-center justify-content-between">
+    <h2 class="">Finalize seu pedido</h2>
+    <button class="btn btn-dark text-center" routerLink="/">Voltar</button>
+  </div>
   <div class="row">
     <div class="col-8">
       <app-address-form />

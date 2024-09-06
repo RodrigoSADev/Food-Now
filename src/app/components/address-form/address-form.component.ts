@@ -1,8 +1,15 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { CepService } from 'src/app/services/cep.service';
 import { Cep } from 'src/app/interfaces/cep.interface';
+import { CheckoutService } from 'src/app/services/checkout.service';
 
 @Component({
   selector: 'app-address-form',
@@ -14,14 +21,15 @@ import { Cep } from 'src/app/interfaces/cep.interface';
 export class AddressFormComponent implements OnInit {
   formBuild = inject(FormBuilder);
   cepService = inject(CepService);
+  checkoutService = inject(CheckoutService);
 
-  addressForm = this.formBuild.group({
-    cep: [''],
-    cidade: [''],
-    bairro: [''],
-    rua: [''],
-    numero: [''],
-    complemento: [''],
+  addressForm: FormGroup = this.formBuild.group({
+    cep: ['', [Validators.required]],
+    city: ['', [Validators.required]],
+    neighborhood: ['', [Validators.required]],
+    street: ['', [Validators.required]],
+    number: ['', [Validators.required]],
+    complement: [''],
     saveAddress: [false],
   });
 
@@ -32,6 +40,7 @@ export class AddressFormComponent implements OnInit {
       const addressData = JSON.parse(savedAddress);
       this.addressForm.patchValue(addressData);
       this.addressForm.get('saveAddress')?.setValue(true);
+      this.checkoutService.address.set(addressData);
     }
 
     // Ouvir mudanças no checkbox
@@ -51,6 +60,7 @@ export class AddressFormComponent implements OnInit {
   }
 
   enableAutoSave(): void {
+    // Salvar o endereço automaticamente quando houver mudanças no formulário
     this.addressForm.valueChanges.subscribe(() => {
       if (this.addressForm.get('saveAddress')?.value) {
         this.saveAddressToLocalStorage();
@@ -59,18 +69,20 @@ export class AddressFormComponent implements OnInit {
   }
 
   saveAddressToLocalStorage(): void {
+    // Salvar o endereço no localStorage para ser carregado posteriormente
     const addressData = {
       cep: this.addressForm.get('cep')?.value,
-      cidade: this.addressForm.get('cidade')?.value,
-      bairro: this.addressForm.get('bairro')?.value,
-      rua: this.addressForm.get('rua')?.value,
-      numero: this.addressForm.get('numero')?.value,
-      complemento: this.addressForm.get('complemento')?.value,
+      city: this.addressForm.get('city')?.value,
+      neighborhood: this.addressForm.get('neighborhood')?.value,
+      street: this.addressForm.get('street')?.value,
+      number: this.addressForm.get('number')?.value,
+      complement: this.addressForm.get('complement')?.value,
     };
 
     localStorage.setItem('savedAddress', JSON.stringify(addressData));
   }
   onBlurCep() {
+    // Remover caracteres não numéricos do Cep e verificar se o Cep está preenchido
     let cep = this.addressForm.get('cep')?.value;
     // Verificar se o Cep tem somente dígitos
     cep = cep?.replace(/\D/g, '');
@@ -78,14 +90,25 @@ export class AddressFormComponent implements OnInit {
       // Regex para validar o Cep
       const validaCep = /^[0-9]{8}$/;
       if (validaCep.test(cep)) {
+        // Buscar dados do Cep usando a API
         this.cepService.searchCep(cep).subscribe((cep: Cep) => {
           this.addressForm.patchValue({
-            cidade: cep.localidade,
-            bairro: cep.bairro,
-            rua: cep.logradouro,
+            city: cep.localidade,
+            neighborhood: cep.bairro,
+            street: cep.logradouro,
           });
         });
       }
+    }
+  }
+
+  updateAddress(): void {
+    // Atualiza o signal no serviço sempre que houver mudança
+    this.checkoutService.setAddress(this.addressForm.value);
+    if (this.addressForm.valid) {
+      this.checkoutService.showAddressErrorMessage.set(false);
+    } else {
+      this.checkoutService.showAddressErrorMessage.set(true);
     }
   }
 }

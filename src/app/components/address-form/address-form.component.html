@@ -11,6 +11,7 @@
           placeholder="CEP"
           formControlName="cep"
           (blur)="onBlurCep()"
+          (blur)="updateAddress()"
         />
         <label for="floatingCep">CEP</label>
       </div>
@@ -22,7 +23,8 @@
           class="form-control"
           id="floatingCity"
           placeholder="Cidade"
-          formControlName="cidade"
+          formControlName="city"
+          (blur)="updateAddress()"
         />
         <label for="floatingCity">Cidade</label>
       </div>
@@ -36,7 +38,8 @@
           class="form-control"
           id="floatingNeighborhood"
           placeholder="Bairro"
-          formControlName="bairro"
+          formControlName="neighborhood"
+          (blur)="updateAddress()"
         />
         <label for="floatingNeighborhood">Bairro</label>
       </div>
@@ -48,7 +51,8 @@
           class="form-control"
           id="flotingStreet"
           placeholder="Rua"
-          formControlName="rua"
+          formControlName="street"
+          (blur)="updateAddress()"
         />
         <label for="flotingStreet">Rua</label>
       </div>
@@ -62,7 +66,8 @@
           class="form-control"
           id="floatingNumber"
           placeholder="Número"
-          formControlName="numero"
+          formControlName="number"
+          (blur)="updateAddress()"
         />
         <label for="floatingNumber">Número</label>
       </div>
@@ -74,7 +79,7 @@
           class="form-control"
           id="floatingComplement"
           placeholder="Complemento"
-          formControlName="complemento"
+          formControlName="complement"
         />
         <label for="floatingComplement">
           Complemento <span class="text-secondary">(Opcional)</span>
@@ -93,4 +98,9 @@
       Deseja salvar o endereço para próximas compras?
     </label>
   </div>
+  @if (checkoutService.showAddressErrorMessage()) {
+  <p class="text-danger">
+    Por favor, preencha todos os campos obrigatórios do endereço.
+  </p>
+  }
 </form>

@@ -10,6 +10,7 @@
         value="dinheiro"
         class="form-check-input"
         required
+        (change)="selectPaymentMethod('Dinheiro')"
       />
       <label for="cash" class="d-flex align-items-center gap-2">
         <i class="bi bi-cash"></i>
@@ -24,6 +25,7 @@
         value="credito"
         class="form-check-input"
         required
+        (change)="selectPaymentMethod('Cartão de Crédito')"
       />
       <label for="credit" class="d-flex align-items-center gap-2">
         <i class="bi bi-credit-card"></i>
@@ -38,6 +40,7 @@
         value="debito"
         class="form-check-input"
         required
+        (change)="selectPaymentMethod('Cartão de Débito')"
       />
       <label for="debit" class="d-flex align-items-center gap-2">
         <i class="bi bi-bank"></i>
@@ -45,5 +48,7 @@
       </label>
     </div>
   </div>
-  <p class="text-danger">Por favor, selecione uma forma de pagamento.</p>
+  @if (checkoutService.showPaymentErrorMessage()) {
+  <p class="text-danger">Por favor, escolha uma forma de pagamento.</p>
+  }
 </form>
