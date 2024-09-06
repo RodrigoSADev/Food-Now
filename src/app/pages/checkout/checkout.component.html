@@ -1,15 +1,15 @@
-<section class="container mt-4">
+<section class="container my-5">
   @if (cart$().totalQuantity > 0 && cart$().totalPrice > 0) {
   <div class="mb-4 d-flex align-items-center justify-content-between">
-    <h2 class="">Finalize seu pedido</h2>
+    <h2 class="animeLeft">Finalize seu pedido</h2>
     <button class="btn btn-dark text-center" routerLink="/">Voltar</button>
   </div>
-  <div class="row">
+  <div class="row animeLeft">
     <div class="col-8">
       <app-address-form />
       <app-payment-form />
     </div>
-    <div class="col-4">
+    <div class="col-4 animeRight">
       <app-cart />
     </div>
   </div>
