@@ -1,0 +1,27 @@
+.step {
+  &.completed {
+    background-color: #28a745;
+    color: #fff;
+  }
+
+  &.active {
+    background-color: #28a745;
+    color: #fff;
+    animation: pulse 1.5s infinite ease-in-out;
+  }
+  transform: scale(1);
+  transition: transform 0.3s;
+}
+
+/* Animação de pulso */
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(40, 167, 69, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 20px 20px rgba(40, 167, 69, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(40, 167, 69, 0);
+  }
+}
