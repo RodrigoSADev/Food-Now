@@ -10,7 +10,7 @@
         value="dinheiro"
         class="form-check-input"
         required
-        (change)="selectPaymentMethod('Dinheiro')"
+        (change)="onSelectPaymentMethod('Dinheiro')"
       />
       <label for="cash" class="d-flex align-items-center gap-2">
         <i class="bi bi-cash"></i>
@@ -25,7 +25,7 @@
         value="credito"
         class="form-check-input"
         required
-        (change)="selectPaymentMethod('Cartão de Crédito')"
+        (change)="onSelectPaymentMethod('Cartão de Crédito')"
       />
       <label for="credit" class="d-flex align-items-center gap-2">
         <i class="bi bi-credit-card"></i>
@@ -40,7 +40,7 @@
         value="debito"
         class="form-check-input"
         required
-        (change)="selectPaymentMethod('Cartão de Débito')"
+        (change)="onSelectPaymentMethod('Cartão de Débito')"
       />
       <label for="debit" class="d-flex align-items-center gap-2">
         <i class="bi bi-bank"></i>

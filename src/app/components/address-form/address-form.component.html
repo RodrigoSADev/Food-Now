@@ -11,7 +11,7 @@
           placeholder="CEP"
           formControlName="cep"
           (blur)="onBlurCep()"
-          (blur)="updateAddress()"
+          (blur)="onUpdateAddress()"
         />
         <label for="floatingCep">CEP</label>
       </div>
@@ -24,7 +24,7 @@
           id="floatingCity"
           placeholder="Cidade"
           formControlName="city"
-          (blur)="updateAddress()"
+          (blur)="onUpdateAddress()"
         />
         <label for="floatingCity">Cidade</label>
       </div>
@@ -39,7 +39,7 @@
           id="floatingNeighborhood"
           placeholder="Bairro"
           formControlName="neighborhood"
-          (blur)="updateAddress()"
+          (blur)="onUpdateAddress()"
         />
         <label for="floatingNeighborhood">Bairro</label>
       </div>
@@ -52,7 +52,7 @@
           id="flotingStreet"
           placeholder="Rua"
           formControlName="street"
-          (blur)="updateAddress()"
+          (blur)="onUpdateAddress()"
         />
         <label for="flotingStreet">Rua</label>
       </div>
@@ -67,7 +67,7 @@
           id="floatingNumber"
           placeholder="Número"
           formControlName="number"
-          (blur)="updateAddress()"
+          (blur)="onUpdateAddress()"
         />
         <label for="floatingNumber">Número</label>
       </div>

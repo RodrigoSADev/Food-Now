@@ -23,7 +23,7 @@ export class PaymentFormComponent {
     paymentMethod: ['', [Validators.required]],
   });
 
-  selectPaymentMethod(method: string) {
+  onSelectPaymentMethod(method: string) {
     // Seleciona o método de pagamento e dispara um evento para o service
     if (this.paymentForm.valid) {
       this.checkoutService.setPaymentMethod(method);

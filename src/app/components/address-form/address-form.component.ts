@@ -102,7 +102,7 @@ export class AddressFormComponent implements OnInit {
     }
   }
 
-  updateAddress(): void {
+  onUpdateAddress(): void {
     // Atualiza o signal no serviço sempre que houver mudança
     this.checkoutService.setAddress(this.addressForm.value);
     if (this.addressForm.valid) {
