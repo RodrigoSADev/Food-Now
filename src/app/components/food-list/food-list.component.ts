@@ -44,7 +44,7 @@ export class FoodListComponent implements OnInit {
     });
   }
 
-  addToCart(food: FoodItem): void {
+  onAdd(food: FoodItem): void {
     this.cartService.addToCart(food);
     Swal.fire({
       toast: true,
