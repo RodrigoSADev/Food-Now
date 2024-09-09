@@ -62,6 +62,10 @@ export class CartService {
     }
   }
 
+  clearItemFromCart(item: CartItem): void {
+    this.updateCartItem(item, -item.quantity);
+  }
+
   clearCart(): void {
     this.cartItems.update(() => []);
     this.updateLocalStorage();

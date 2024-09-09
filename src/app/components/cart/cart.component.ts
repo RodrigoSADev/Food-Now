@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, Signal } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
-import { Cart } from 'src/app/interfaces/cart.interface';
+import { Cart, CartItem } from 'src/app/interfaces/cart.interface';
 import { FoodItem } from 'src/app/interfaces/food.interface';
 import { CartService } from 'src/app/services/cart.service';
 import Swal from 'sweetalert2';
@@ -22,7 +22,7 @@ export class CartComponent {
   cart$: Signal<Cart> = this.cartService.cart;
   deliveryValue = 5;
 
-  addItem(food: FoodItem): void {
+  onIncrease(food: FoodItem): void {
     this.cartService.addToCart(food);
     Swal.fire({
       toast: true,
@@ -37,7 +37,7 @@ export class CartComponent {
     });
   }
 
-  removeItem(productId: number): void {
+  onDecrease(productId: number): void {
     this.cartService.removeFromCart(productId);
     Swal.fire({
       toast: true,
@@ -52,7 +52,11 @@ export class CartComponent {
     });
   }
 
-  confirmOrder() {
+  onRemove(item: CartItem) {
+    this.cartService.clearItemFromCart(item);
+  }
+
+  onConfirmOrder() {
     const paymentValid = this.checkoutService.validatePayment();
     const addressValid = this.checkoutService.validateAddress();
 
