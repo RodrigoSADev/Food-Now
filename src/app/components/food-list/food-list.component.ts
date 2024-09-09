@@ -18,6 +18,7 @@ export class FoodListComponent implements OnInit {
   allFoods: FoodData | undefined;
   isLoading = true;
   currentFoodType: string | undefined;
+  hasError = false;
 
   actRoute = inject(ActivatedRoute);
   foodService = inject(FoodService);
@@ -37,6 +38,8 @@ export class FoodListComponent implements OnInit {
       },
       error: (error) => {
         console.error('Erro ao carregar os dados:', error);
+        this.hasError = true;
+        this.isLoading = false;
       },
       complete: () => {
         this.isLoading = false;
