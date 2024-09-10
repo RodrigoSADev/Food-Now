@@ -5,6 +5,7 @@ import { Cart, CartItem } from 'src/app/interfaces/cart.interface';
 import { FoodItem } from 'src/app/interfaces/food.interface';
 import { CartService } from 'src/app/services/cart.service';
 import { CheckoutService } from 'src/app/services/checkout.service';
+import { OrderService } from 'src/app/services/order.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -18,6 +19,7 @@ export class CartComponent {
   checkoutService = inject(CheckoutService);
   cartService = inject(CartService);
   router = inject(Router);
+  orderService = inject(OrderService);
 
   cart$: Signal<Cart> = this.cartService.cart;
   deliveryValue = 5;
@@ -52,6 +54,7 @@ export class CartComponent {
     if (paymentValid && addressValid) {
       this.router.navigate(['/confirm-order']);
       this.cartService.clearCart();
+      this.orderService.resetOrder();
     } else {
       if (!paymentValid) {
         this.checkoutService.showPaymentErrorMessage.set(true);
