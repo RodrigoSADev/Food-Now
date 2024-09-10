@@ -24,9 +24,10 @@ import { CheckoutService } from 'src/app/services/checkout.service';
 })
 export class CheckoutComponent implements OnInit {
   cartService = inject(CartService);
-  cart$: Signal<Cart> = this.cartService.cart;
   orderService = inject(OrderService);
   checkService = inject(CheckoutService);
+
+  cart$: Signal<Cart> = this.cartService.cart;
 
   ngOnInit(): void {
     this.checkService.setAddress({
