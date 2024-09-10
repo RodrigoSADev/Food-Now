@@ -17,10 +17,8 @@ export class FooterComponent {
       if (event instanceof NavigationEnd) {
         const currentUrl = event.url;
         if (currentUrl === '/confirm-order' || currentUrl === '/checkout') {
-          console.log('true');
           this.isFooterBottom = true;
         } else {
-          console.log('false');
           this.isFooterBottom = false;
         }
       }
