@@ -7,6 +7,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { CheckoutService } from 'src/app/services/checkout.service';
+import { OrderService } from 'src/app/services/order.service';
 
 @Component({
   selector: 'app-payment-form',
@@ -18,6 +19,7 @@ import { CheckoutService } from 'src/app/services/checkout.service';
 export class PaymentFormComponent {
   formBuild = inject(FormBuilder);
   checkoutService = inject(CheckoutService);
+  orderService = inject(OrderService);
 
   paymentForm = this.formBuild.group({
     paymentMethod: ['', [Validators.required]],
@@ -25,6 +27,7 @@ export class PaymentFormComponent {
 
   onSelectPaymentMethod(method: string) {
     // Seleciona o método de pagamento e dispara um evento para o service
+    this.orderService.clearOrderData();
     if (this.paymentForm.valid) {
       this.checkoutService.setPaymentMethod(method);
       this.checkoutService.showPaymentErrorMessage.set(false); // Esconde a mensagem de erro quando um método é selecionado

@@ -61,7 +61,7 @@ export class CheckoutService {
   }
 
   // Salva os dados no localStorage
-  private saveToLocalStorage(): void {
+  saveToLocalStorage(): void {
     this.orderService.saveOrderData({
       address: this.getAddress(),
       paymentMethod: this.getPaymentMethod(),
