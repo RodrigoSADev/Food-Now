@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, Signal } from '@angular/core';
+import { Component, inject, OnInit, Signal } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { Cart, CartItem } from 'src/app/interfaces/cart.interface';
 import { FoodItem } from 'src/app/interfaces/food.interface';
@@ -15,7 +15,7 @@ import Swal from 'sweetalert2';
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.scss',
 })
-export class CartComponent {
+export class CartComponent implements OnInit {
   checkoutService = inject(CheckoutService);
   cartService = inject(CartService);
   router = inject(Router);
@@ -23,6 +23,10 @@ export class CartComponent {
 
   cart$: Signal<Cart> = this.cartService.cart;
   deliveryValue = 5;
+
+  ngOnInit(): void {
+    this.checkoutService.setPaymentMethod('');
+  }
 
   onIncrease(food: FoodItem): void {
     this.cartService.addToCart(food);
