@@ -1,4 +1,9 @@
-<footer class="bg-dark mt-5">
+<footer
+  class="bg-dark mt-5"
+  [ngClass]="{
+  'footer-bottom': isFooterBottom,
+}"
+>
   <p class="text-white text-center p-3 fw-bold m-0">
     Desenvolvido por Rodrigo Silva de Almeida
   </p>
