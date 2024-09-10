@@ -27,7 +27,6 @@ export class PaymentFormComponent {
 
   onSelectPaymentMethod(method: string) {
     // Seleciona o método de pagamento e dispara um evento para o service
-    this.orderService.clearOrderData();
     if (this.paymentForm.valid) {
       this.checkoutService.setPaymentMethod(method);
       this.checkoutService.showPaymentErrorMessage.set(false); // Esconde a mensagem de erro quando um método é selecionado

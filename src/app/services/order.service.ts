@@ -19,11 +19,6 @@ export class OrderService {
     return data ? JSON.parse(data) : null;
   }
 
-  // Limpa os dados do localStorage
-  clearOrderData(): void {
-    localStorage.removeItem(this.storageOrderKey);
-  }
-
   // Obtém a etapa atual do pedido do localStorage ou retorna 1 se não existir
   getCurrentStep(): number {
     const savedStep = localStorage.getItem(this.storageOrderStepKey);
