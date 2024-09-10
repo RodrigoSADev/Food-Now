@@ -36,23 +36,15 @@
         </p>
       </div>
     </div>
-
-    <!-- Status Details -->
-    <div class="row justify-content-center">
-      <div class="col-md-8">
-        <div class="bg-body-tertiary rounded p-4" *ngIf="currentStep === 1">
-          Estamos preparando o seu pedido!
-        </div>
-        <div class="bg-body-tertiary rounded p-4" *ngIf="currentStep === 2">
-          O entregador já está a caminho com o seu pedido.
-        </div>
-        <div class="bg-body-tertiary rounded p-4" *ngIf="currentStep === 3">
-          Pedido entregue! Bom apetite!
-        </div>
-      </div>
-    </div>
   </div>
-  <div class="animeUp">
+  <div class="animeUp bg-body-tertiary rounded p-4">
+    <!-- Status Details -->
+    <p>
+      <span class="text-secondary">Status do Pedido: </span>
+      @if(currentStep === 1){ Estamos preparando o seu pedido! } @if(currentStep
+      === 2){ O entregador já está a caminho com o seu pedido. } @if(currentStep
+      === 3){ Pedido entregue! Bom apetite! }
+    </p>
     <p>
       <span class="text-secondary">Endereço de entrega: </span>
       {{ checkoutService.getAddress().street }}, nº
