@@ -51,7 +51,7 @@ export class FoodListComponent implements OnInit {
     this.cartService.addToCart(food);
     Swal.fire({
       toast: true,
-      position: 'top-end',
+      position: 'bottom-end',
       icon: 'success',
       title: 'Adicionado ao carrinho!',
       text: `${food.name} adicionado com sucesso!`,
