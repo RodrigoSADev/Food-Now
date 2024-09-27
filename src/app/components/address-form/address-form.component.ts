@@ -10,6 +10,7 @@ import {
 import { CepService } from 'src/app/services/cep.service';
 import { Cep } from 'src/app/interfaces/cep.interface';
 import { CheckoutService } from 'src/app/services/checkout.service';
+import { Address } from 'src/app/interfaces/address.interface';
 
 @Component({
   selector: 'app-address-form',
@@ -56,6 +57,15 @@ export class AddressFormComponent implements OnInit {
     // Se o checkbox já estava marcado, ativar o autosave
     if (this.addressForm.get('saveAddress')?.value) {
       this.enableAutoSave();
+    } else {
+      this.checkoutService.setAddress({
+        cep: '',
+        city: '',
+        neighborhood: '',
+        street: '',
+        number: '',
+        complement: '',
+      });
     }
   }
 
