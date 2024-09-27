@@ -24,11 +24,11 @@ export class AddressFormComponent implements OnInit {
   checkoutService = inject(CheckoutService);
 
   addressForm: FormGroup = this.formBuild.group({
-    cep: ['', [Validators.required]],
-    city: ['', [Validators.required]],
-    neighborhood: ['', [Validators.required]],
-    street: ['', [Validators.required]],
-    number: ['', [Validators.required]],
+    cep: ['', [Validators.required, Validators.minLength(8)]],
+    city: ['', [Validators.required, Validators.minLength(2)]],
+    neighborhood: ['', [Validators.required, Validators.minLength(5)]],
+    street: ['', [Validators.required, Validators.minLength(5)]],
+    number: ['', [Validators.required, Validators.minLength(1)]],
     complement: [''],
     saveAddress: [false],
   });
