@@ -1,0 +1,106 @@
+<form [formGroup]="addressForm" class="bg-body-tertiary p-4 rounded">
+  <h5>Endereço de Entrega</h5>
+  <p>Informe o endereço onde deseja receber seu pedido.</p>
+  <div class="row">
+    <div class="col-6">
+      <div class="form-floating">
+        <input
+          type="text"
+          class="form-control"
+          id="floatingCep"
+          placeholder="CEP"
+          formControlName="cep"
+          (blur)="onBlurCep()"
+          (blur)="onUpdateAddress()"
+        />
+        <label for="floatingCep">CEP</label>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="form-floating">
+        <input
+          type="text"
+          class="form-control"
+          id="floatingCity"
+          placeholder="Cidade"
+          formControlName="city"
+          (blur)="onUpdateAddress()"
+        />
+        <label for="floatingCity">Cidade</label>
+      </div>
+    </div>
+  </div>
+  <div class="row my-3">
+    <div class="col-6">
+      <div class="form-floating">
+        <input
+          type="text"
+          class="form-control"
+          id="floatingNeighborhood"
+          placeholder="Bairro"
+          formControlName="neighborhood"
+          (blur)="onUpdateAddress()"
+        />
+        <label for="floatingNeighborhood">Bairro</label>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="form-floating">
+        <input
+          type="text"
+          class="form-control"
+          id="flotingStreet"
+          placeholder="Rua"
+          formControlName="street"
+          (blur)="onUpdateAddress()"
+        />
+        <label for="flotingStreet">Rua</label>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-6">
+      <div class="form-floating">
+        <input
+          type="text"
+          class="form-control"
+          id="floatingNumber"
+          placeholder="Número"
+          formControlName="number"
+          (blur)="onUpdateAddress()"
+        />
+        <label for="floatingNumber">Número</label>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="form-floating">
+        <input
+          type="text"
+          class="form-control"
+          id="floatingComplement"
+          placeholder="Complemento"
+          formControlName="complement"
+        />
+        <label for="floatingComplement">
+          Complemento <span class="text-secondary">(Opcional)</span>
+        </label>
+      </div>
+    </div>
+  </div>
+  <div class="form-check mt-3">
+    <input
+      class="form-check-input"
+      type="checkbox"
+      id="flexCheckDefault"
+      formControlName="saveAddress"
+    />
+    <label class="form-check-label" for="flexCheckDefault">
+      Deseja salvar o endereço para próximas compras?
+    </label>
+  </div>
+  @if (checkoutService.showAddressErrorMessage()) {
+  <p class="text-danger mt-3">
+    Por favor, preencha todos os campos obrigatórios do endereço.
+  </p>
+  }
+</form>
