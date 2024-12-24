@@ -1,0 +1,54 @@
+<form [formGroup]="paymentForm" class="bg-body-tertiary p-4 mt-4 rounded">
+  <h5>Pagamento</h5>
+  <p>O pagamento é feito na entrega. Escolha a forma que deseja pagar:</p>
+  <div class="row g-4">
+    <div class="col-4 d-flex align-items-center gap-2">
+      <input
+        type="radio"
+        id="cash"
+        formControlName="paymentMethod"
+        value="dinheiro"
+        class="form-check-input"
+        required
+        (change)="onSelectPaymentMethod('Dinheiro')"
+      />
+      <label for="cash" class="d-flex align-items-center gap-2">
+        <i class="bi bi-cash"></i>
+        <span>Dinheiro</span>
+      </label>
+    </div>
+    <div class="col-4 d-flex align-items-center gap-2">
+      <input
+        type="radio"
+        id="credit"
+        formControlName="paymentMethod"
+        value="credito"
+        class="form-check-input"
+        required
+        (change)="onSelectPaymentMethod('Cartão de Crédito')"
+      />
+      <label for="credit" class="d-flex align-items-center gap-2">
+        <i class="bi bi-credit-card"></i>
+        <span>Cartão de Crédito</span>
+      </label>
+    </div>
+    <div class="col-4 d-flex align-items-center gap-2">
+      <input
+        type="radio"
+        id="debit"
+        formControlName="paymentMethod"
+        value="debito"
+        class="form-check-input"
+        required
+        (change)="onSelectPaymentMethod('Cartão de Débito')"
+      />
+      <label for="debit" class="d-flex align-items-center gap-2">
+        <i class="bi bi-bank"></i>
+        <span>Cartão de Débito</span>
+      </label>
+    </div>
+  </div>
+  @if (checkoutService.showPaymentErrorMessage()) {
+  <p class="text-danger mt-3">Por favor, escolha uma forma de pagamento.</p>
+  }
+</form>
