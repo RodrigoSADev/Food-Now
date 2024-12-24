@@ -2,7 +2,9 @@ import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { ActivatedRoute, RouterLink, RouterLinkActive } from '@angular/router';
 import { catchError, map, of, switchMap } from 'rxjs';
+import Swal from 'sweetalert2';
 import { IFoodData, IFoodItem } from '../../interfaces/food.interface';
+import { CartService } from '../../services/cart.service';
 import { FoodService } from '../../services/food.service';
 
 @Component({
@@ -14,6 +16,7 @@ import { FoodService } from '../../services/food.service';
 export class FoodListComponent implements OnInit {
   actRoute = inject(ActivatedRoute);
   foodService = inject(FoodService);
+  cartService = inject(CartService);
 
   allFoods = signal<IFoodData | null>(null);
   currentFood = signal<IFoodItem[] | null>(null);
@@ -51,5 +54,18 @@ export class FoodListComponent implements OnInit {
       .subscribe();
   }
 
-  onAdd(food: IFoodItem): void {}
+  onAdd(food: IFoodItem): void {
+    this.cartService.addToCart(food);
+    Swal.fire({
+      toast: true,
+      position: 'bottom-end',
+      icon: 'success',
+      title: 'Adicionado ao carrinho!',
+      text: `${food.name} adicionado com sucesso!`,
+      showConfirmButton: false,
+      showCloseButton: true,
+      timer: 3000,
+      timerProgressBar: true,
+    });
+  }
 }
