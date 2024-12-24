@@ -1,0 +1,55 @@
+<section class="bg-body-tertiary p-4 rounded">
+  @if (cart$(); as cart) { @for (item of cart.items; track item.id) {
+  <div class="row mb-4">
+    <img src="{{ item.image }}" class="img-fluid col-4" alt="{{ item.alt }}" />
+    <div class="col-8 d-flex justify-content-between">
+      <div>
+        <p class="fw-bold m-0 mb-2">
+          {{ item.name }}
+        </p>
+        <div class="d-flex align-items-center gap-2">
+          <button class="btn p-0" (click)="onDecrease(item.id)">
+            <i class="bi bi-dash-circle"></i>
+          </button>
+          <p class="m-0 fw-bold">
+            {{ item.quantity }}
+          </p>
+          <button class="btn p-0" (click)="onIncrease(item)">
+            <i class="bi bi-plus-circle"></i>
+          </button>
+        </div>
+      </div>
+      <div>
+        <p class="fw-bold m-0 mb-2">
+          {{ item.price | currency : "BRL" : "symbol" }}
+        </p>
+        <div class="text-end">
+          <button (click)="onRemove(item)" class="btn p-0">
+            <i style="font-size: 1.1rem" class="bi bi-trash text-danger"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  }
+  <div class="d-flex justify-content-between">
+    <p class="text-secondary m-0">Total de Itens:</p>
+    <p class="text-secondary m-0">
+      {{ cart.totalPrice | currency : "BRL" : "symbol" }}
+    </p>
+  </div>
+  <div class="d-flex justify-content-between">
+    <p class="text-secondary">Entrega:</p>
+    <p class="text-secondary">
+      {{ deliveryValue | currency : "BRL" : "symbol" }}
+    </p>
+  </div>
+  <div class="d-flex justify-content-between">
+    <p class="fw-bold">Valor Total:</p>
+    <p class="fw-bold">
+      {{ cart.totalPrice + deliveryValue | currency : "BRL" : "symbol" }}
+    </p>
+  </div>
+  <div class="d-flex justify-content-end"></div>
+  }
+</section>
