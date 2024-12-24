@@ -1,1 +1,55 @@
-/* You can add global styles to this file, and also import other style files */
+/* Animação de esquerda */
+.animeLeft {
+  transform: translateX(-20px);
+  opacity: 0;
+  animation: animeLeft 0.5s forwards;
+}
+
+@keyframes animeLeft {
+  to {
+    transform: initial;
+    opacity: initial;
+  }
+}
+
+/* Animação de direita */
+.animeRight {
+  transform: translateX(40px);
+  opacity: 0;
+  animation: animeRight 0.5s forwards;
+}
+
+@keyframes animeRight {
+  to {
+    transform: initial;
+    opacity: initial;
+  }
+}
+
+/* Animação de descida */
+.animeDown {
+  transform: translateY(-20px);
+  opacity: 0;
+  animation: animeDown 0.5s forwards;
+}
+
+@keyframes animeDown {
+  to {
+    transform: initial;
+    opacity: initial;
+  }
+}
+
+/* Animação de subida */
+.animeUp {
+  transform: translateY(20px);
+  opacity: 0;
+  animation: animeUp 0.5s forwards;
+}
+
+@keyframes animeUp {
+  to {
+    transform: initial;
+    opacity: initial;
+  }
+}
