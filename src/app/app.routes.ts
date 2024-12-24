@@ -14,4 +14,12 @@ export const routes: Routes = [
     title: 'Food Now |  Bebidas',
   },
   { path: '', redirectTo: '/hamburguer', pathMatch: 'full' },
+  {
+    path: 'checkout',
+    loadComponent: () =>
+      import('./components/checkout/checkout.component').then(
+        (m) => m.CheckoutComponent
+      ),
+    title: 'Food Now |  Checkout',
+  },
 ];
