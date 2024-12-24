@@ -1,5 +1,5 @@
+import { provideHttpClient } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { AddressFormComponent } from './address-form.component';
 
 describe('AddressFormComponent', () => {
@@ -8,9 +8,9 @@ describe('AddressFormComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AddressFormComponent]
-    })
-    .compileComponents();
+      imports: [AddressFormComponent],
+      providers: [provideHttpClient()],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(AddressFormComponent);
     component = fixture.componentInstance;
