@@ -1,3 +1,17 @@
 import { Routes } from '@angular/router';
+import { FoodListComponent } from './components/food-list/food-list.component';
 
-export const routes: Routes = [];
+export const routes: Routes = [
+  {
+    path: 'hamburguer',
+    component: FoodListComponent,
+    title: 'Food Now |  Hamburguer',
+  },
+  { path: 'pizza', component: FoodListComponent, title: 'Food Now |  Pizza' },
+  {
+    path: 'bebidas',
+    component: FoodListComponent,
+    title: 'Food Now |  Bebidas',
+  },
+  { path: '', redirectTo: '/hamburguer', pathMatch: 'full' },
+];
