@@ -3,10 +3,11 @@ import { RouterLink } from '@angular/router';
 import { ICart } from '../../interfaces/cart.interface';
 import { CartService } from '../../services/cart.service';
 import { CartComponent } from '../cart/cart.component';
+import { PaymentFormComponent } from '../payment-form/payment-form.component';
 
 @Component({
   selector: 'app-checkout',
-  imports: [RouterLink, CartComponent],
+  imports: [RouterLink, PaymentFormComponent, CartComponent],
   templateUrl: './checkout.component.html',
   styleUrl: './checkout.component.scss',
 })
