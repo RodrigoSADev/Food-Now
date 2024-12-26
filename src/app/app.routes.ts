@@ -22,4 +22,12 @@ export const routes: Routes = [
       ),
     title: 'Food Now |  Checkout',
   },
+  {
+    path: 'confirm-order',
+    loadComponent: () =>
+      import(
+        './components/order-confirmation/order-confirmation.component'
+      ).then((m) => m.OrderConfirmationComponent),
+    title: 'Food Now |  Pedido Confirmado',
+  },
 ];
