@@ -5,6 +5,7 @@ import Swal from 'sweetalert2';
 import { ICart, ICartItem } from '../../interfaces/cart.interface';
 import { IFoodItem } from '../../interfaces/food.interface';
 import { CartService } from '../../services/cart.service';
+import { CheckoutService } from '../../services/checkout.service';
 
 @Component({
   selector: 'app-cart',
@@ -14,6 +15,7 @@ import { CartService } from '../../services/cart.service';
 })
 export class CartComponent {
   cartService = inject(CartService);
+  checkoutService = inject(CheckoutService);
   router = inject(Router);
 
   cart$: Signal<ICart> = this.cartService.cart;
@@ -40,5 +42,23 @@ export class CartComponent {
       timer: 3000,
       timerProgressBar: true,
     });
+  }
+
+  onConfirmOrder() {
+    const paymentValid = this.checkoutService.validatePayment();
+    const addressValid = this.checkoutService.validateAddress();
+
+    if (paymentValid && addressValid) {
+      this.router.navigate(['/confirm-order']);
+      this.cartService.clearCart();
+      this.checkoutService.setPaymentMethod('');
+    } else {
+      if (!paymentValid) {
+        this.checkoutService.showPaymentErrorMessage.set(true);
+      }
+      if (!addressValid) {
+        this.checkoutService.showAddressErrorMessage.set(true);
+      }
+    }
   }
 }

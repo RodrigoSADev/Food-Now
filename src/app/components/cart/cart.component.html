@@ -50,6 +50,10 @@
       {{ cart.totalPrice + deliveryValue | currency : "BRL" : "symbol" }}
     </p>
   </div>
-  <div class="d-flex justify-content-end"></div>
+  <div class="d-flex justify-content-end">
+    <button (click)="onConfirmOrder()" class="btn btn-success">
+      Confirmar Pedido
+    </button>
+  </div>
   }
 </section>
