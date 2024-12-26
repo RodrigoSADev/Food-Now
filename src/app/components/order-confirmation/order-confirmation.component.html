@@ -2,7 +2,7 @@
   <h2 class="text-center my-5 animeDown">Seu pedido foi confirmado!</h2>
   <div class="container text-center my-4 animeDown">
     <div class="row">
-      <div class="col-4">
+      <div class="col-12 col-sm-4">
         <p
           class="step rounded fw-bold p-3"
           [ngClass]="{
@@ -13,7 +13,7 @@
           Pedido sendo Preparado
         </p>
       </div>
-      <div class="col-4">
+      <div class="col-12 col-sm-4">
         <p
           class="step rounded fw-bold p-3"
           [ngClass]="{
@@ -24,7 +24,7 @@
           Saiu para Entrega
         </p>
       </div>
-      <div class="col-4">
+      <div class="col-12 col-sm-4">
         <p
           class="step rounded fw-bold p-3"
           [ngClass]="{
@@ -39,6 +39,7 @@
   </div>
   <div class="animeUp bg-body-tertiary rounded p-4">
     <!-- Status Details -->
+    <h3 class="mb-3">Informações do Pedido</h3>
     <p>
       <span class="text-secondary">Status do Pedido: </span>
       @if(currentStep === 1){ Estamos preparando o seu pedido! } @if(currentStep
