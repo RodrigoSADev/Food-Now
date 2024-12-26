@@ -1,8 +1,14 @@
 <section class="container my-5">
   @if (cart$().totalQuantity > 0 && cart$().totalPrice > 0) {
   <div class="mb-4 d-flex align-items-center justify-content-between">
-    <h2 class="animeLeft">Finalize seu pedido</h2>
-    <button class="btn btn-dark text-center" routerLink="/">Voltar</button>
+    <h2 class="animeLeft" data-test="checkout-title">Finalize seu pedido</h2>
+    <button
+      class="btn btn-dark text-center"
+      routerLink="/"
+      data-test="checkout-back-button"
+    >
+      Voltar
+    </button>
   </div>
   <div class="row animeLeft">
     <div class="col-12 col-lg-8">
@@ -15,8 +21,14 @@
   </div>
   } @else {
   <div class="text-center my-5">
-    <i class="bi bi-cart-x" style="font-size: 14rem"></i>
-    <h3 class="fw-bold">Seu carrinho está vazio.</h3>
+    <i
+      class="bi bi-cart-x"
+      style="font-size: 14rem"
+      data-test="checkout-empty-cart-icon"
+    ></i>
+    <h3 class="fw-bold" data-test="checkout-empty-cart">
+      Seu carrinho está vazio.
+    </h3>
   </div>
   }
 </section>
