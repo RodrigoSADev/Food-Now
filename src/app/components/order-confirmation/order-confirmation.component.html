@@ -1,0 +1,67 @@
+<section class="container">
+  <h2 class="text-center my-5 animeDown">Seu pedido foi confirmado!</h2>
+  <div class="container text-center my-4 animeDown">
+    <div class="row">
+      <div class="col-4">
+        <p
+          class="step rounded fw-bold p-3"
+          [ngClass]="{
+            completed: currentStep > 1,
+            active: currentStep === 1
+          }"
+        >
+          Pedido sendo Preparado
+        </p>
+      </div>
+      <div class="col-4">
+        <p
+          class="step rounded fw-bold p-3"
+          [ngClass]="{
+            completed: currentStep > 2,
+            active: currentStep === 2
+          }"
+        >
+          Saiu para Entrega
+        </p>
+      </div>
+      <div class="col-4">
+        <p
+          class="step rounded fw-bold p-3"
+          [ngClass]="{
+            completed: currentStep > 3,
+            active: currentStep === 3
+          }"
+        >
+          Entregue
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="animeUp bg-body-tertiary rounded p-4">
+    <!-- Status Details -->
+    <p>
+      <span class="text-secondary">Status do Pedido: </span>
+      @if(currentStep === 1){ Estamos preparando o seu pedido! } @if(currentStep
+      === 2){ O entregador já está a caminho com o seu pedido. } @if(currentStep
+      === 3){ Pedido entregue! Bom apetite! }
+    </p>
+    <p>
+      <span class="text-secondary">Endereço de entrega: </span>
+      {{ checkoutService.getAddress().street }}, nº
+      {{ checkoutService.getAddress().number }},
+      {{ checkoutService.getAddress().neighborhood }} -
+      {{ checkoutService.getAddress().city }}
+    </p>
+    <p>
+      <span class="text-secondary">Forma de pagamento: </span>
+      {{ checkoutService.getPaymentMethod() }}
+    </p>
+    <p>
+      <span class="text-secondary"
+        >Caso deseje entrar em contato para alterar alguma informação, ligue
+        para o número:</span
+      >
+      (21) 91234-5678
+    </p>
+  </div>
+</section>
