@@ -7,13 +7,19 @@
           style="width: 100px"
           src="food-now-logo.png"
           alt="Logo Food Now"
+          data-test="header-logo"
         />
       </a>
       <a routerLink="/checkout">
-        <button type="button" class="btn btn-danger position-relative">
-          <i class="bi bi-cart"></i>
+        <button
+          type="button"
+          class="btn btn-danger position-relative"
+          data-test="header-cart-button"
+        >
+          <i class="bi bi-cart" data-test="header-cart-icon"></i>
           <span
             class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+            data-test="header-cart-quantity"
           >
             @if (cart$().totalQuantity > 0) {
             {{ cart$().totalQuantity }}
