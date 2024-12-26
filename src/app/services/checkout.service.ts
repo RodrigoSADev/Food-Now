@@ -27,6 +27,10 @@ export class CheckoutService {
     this.paymentMethod.set(method);
   }
 
+  validatePayment(): boolean {
+    return !!this.paymentMethod();
+  }
+
   // Métodos relacionados ao endereço
   getAddress(): IAddress {
     return this.address();
@@ -34,5 +38,10 @@ export class CheckoutService {
 
   setAddress(address: IAddress): void {
     this.address.set(address);
+  }
+
+  validateAddress(): boolean {
+    const { cep, city, neighborhood, street, number } = this.address();
+    return !!cep && !!city && !!neighborhood && !!street && !!number;
   }
 }
