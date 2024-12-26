@@ -25,6 +25,7 @@ export class PaymentFormComponent {
     // Seleciona o método de pagamento e dispara um evento para o service
     if (this.paymentForm.valid) {
       this.checkoutService.setPaymentMethod(method);
+      this.checkoutService.setSavedPaymentMethod(method);
       this.checkoutService.showPaymentErrorMessage.set(false); // Esconde a mensagem de erro quando um método é selecionado
     }
   }

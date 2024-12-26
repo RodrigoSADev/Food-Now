@@ -6,6 +6,7 @@ import { IAddress } from '../interfaces/address.interface';
 })
 export class CheckoutService {
   paymentMethod = signal('');
+  savedPaymentMethod = signal('');
   showPaymentErrorMessage = signal(false);
 
   address = signal<IAddress>({
@@ -19,16 +20,20 @@ export class CheckoutService {
   showAddressErrorMessage = signal(false);
 
   // Métodos relacionados ao pagamento
-  getPaymentMethod(): string {
-    return this.paymentMethod();
-  }
-
   setPaymentMethod(method: string): void {
     this.paymentMethod.set(method);
   }
 
   validatePayment(): boolean {
     return !!this.paymentMethod();
+  }
+
+  getSavedPaymentMethod(): string {
+    return this.savedPaymentMethod();
+  }
+
+  setSavedPaymentMethod(method: string): void {
+    this.savedPaymentMethod.set(method);
   }
 
   // Métodos relacionados ao endereço
