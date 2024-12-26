@@ -7,6 +7,7 @@ import { IFoodItem } from '../interfaces/food.interface';
 })
 export class CartService {
   cartItems = signal<ICartItem[]>(this.loadCartFromLocalStorage() || []);
+  totalPrice = signal<number>(0);
 
   cart: Signal<ICart> = computed(() => {
     const items = this.cartItems();

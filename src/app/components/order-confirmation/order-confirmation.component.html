@@ -61,6 +61,10 @@
       {{ checkoutService.getAddress().city }}
     </p>
     <p>
+      <span class="text-secondary">Valor Total: </span>
+      {{ cartService.totalPrice() | currency : "BRL" : "symbol" }}
+    </p>
+    <p>
       <span class="text-secondary">Forma de pagamento: </span>
       {{ checkoutService.getSavedPaymentMethod() }}
     </p>

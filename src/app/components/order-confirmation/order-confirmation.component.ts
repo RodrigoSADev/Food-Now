@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { CartService } from '../../services/cart.service';
 import { CheckoutService } from '../../services/checkout.service';
 
 @Component({
@@ -11,6 +12,7 @@ import { CheckoutService } from '../../services/checkout.service';
 })
 export class OrderConfirmationComponent {
   checkoutService = inject(CheckoutService);
+  cartService = inject(CartService);
 
   currentStep = 1;
 

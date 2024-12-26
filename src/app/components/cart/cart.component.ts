@@ -20,6 +20,7 @@ export class CartComponent {
 
   cart$: Signal<ICart> = this.cartService.cart;
   deliveryValue = 5;
+  totalPrice = 0;
 
   onIncrease(food: IFoodItem): void {
     this.cartService.addToCart(food);
@@ -50,6 +51,9 @@ export class CartComponent {
 
     if (paymentValid && addressValid) {
       this.router.navigate(['/confirm-order']);
+      this.cartService.totalPrice.set(
+        this.cart$().totalPrice + this.deliveryValue
+      );
       this.cartService.clearCart();
       this.checkoutService.setPaymentMethod('');
     } else {
