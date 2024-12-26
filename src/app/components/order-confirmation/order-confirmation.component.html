@@ -39,7 +39,14 @@
   </div>
   <div class="animeUp bg-body-tertiary rounded p-4">
     <!-- Status Details -->
-    <h3 class="mb-3">Informações do Pedido</h3>
+    <div class="mb-4 d-flex align-items-center justify-content-between">
+      <h3 class="mb-3">Informações do Pedido</h3>
+      @if(currentStep === 3){
+      <button class="btn btn-dark text-center animeUp" routerLink="/">
+        Voltar
+      </button>
+      }
+    </div>
     <p>
       <span class="text-secondary">Status do Pedido: </span>
       @if(currentStep === 1){ Estamos preparando o seu pedido! } @if(currentStep

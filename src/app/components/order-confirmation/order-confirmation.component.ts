@@ -1,10 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { CheckoutService } from '../../services/checkout.service';
 
 @Component({
   selector: 'app-order-confirmation',
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './order-confirmation.component.html',
   styleUrl: './order-confirmation.component.scss',
 })
