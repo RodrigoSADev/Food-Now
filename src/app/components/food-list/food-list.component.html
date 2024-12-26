@@ -7,6 +7,7 @@
       class="btn btn-outline-danger"
       routerLink="/hamburguer"
       routerLinkActive="active"
+      data-test="food-list-button"
     >
       Hamburguer
     </button>
@@ -15,6 +16,7 @@
       class="btn btn-outline-danger"
       routerLink="/pizza"
       routerLinkActive="active"
+      data-test="food-list-button"
     >
       Pizza
     </button>
@@ -23,6 +25,7 @@
       class="btn btn-outline-danger"
       routerLink="/bebidas"
       routerLinkActive="active"
+      data-test="food-list-button"
     >
       Bebidas
     </button>
@@ -30,16 +33,20 @@
   <div class="row g-4">
     @for (food of currentFood(); track food.id) {
     <div class="col-12 col-sm-6 col-xl-4">
-      <div class="card">
+      <div class="card" data-test="food-list-card">
         <img src="{{ food.image }}" class="card-img-top" alt="{{ food.alt }}" />
         <div class="card-body">
           <div class="d-flex align-items-center justify-content-between pb-2">
-            <h5 class="card-title m-0 p-0">{{ food.name }}</h5>
-            <p class="card-text fw-bold m-0">
+            <h5 class="card-title m-0 p-0" data-test="food-list-card-title">
+              {{ food.name }}
+            </h5>
+            <p class="card-text fw-bold m-0" data-test="food-list-card-text">
               {{ food.price | currency : "BRL" : "symbol" }}
             </p>
           </div>
-          <p class="card-text">{{ food.description }}</p>
+          <p class="card-text" data-test="food-list-card-description">
+            {{ food.description }}
+          </p>
 
           <div class="d-flex justify-content-center">
             <button class="btn btn-success" (click)="onAdd(food)">
@@ -97,8 +104,8 @@
   </div>
   } } @else {
   <div class="text-center my-5">
-    <i class="bi bi-database-x"></i>
-    <h3 class="fw-bold">
+    <i class="bi bi-database-x" data-test="food-list-error-icon"></i>
+    <h3 class="fw-bold" data-test="food-list-error-message">
       Não foi possível carregar os dados. Tente novamente mais tarde.
     </h3>
   </div>
