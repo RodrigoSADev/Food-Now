@@ -1,5 +1,7 @@
 <section class="container">
-  <h2 class="text-center my-5 animeDown">Seu pedido foi confirmado!</h2>
+  <h2 class="text-center my-5 animeDown" data-test="order-title">
+    Seu pedido foi confirmado!
+  </h2>
   <div class="container text-center my-4 animeDown">
     <div class="row">
       <div class="col-12 col-sm-4">
@@ -40,15 +42,17 @@
   <div class="animeUp bg-body-tertiary rounded p-4">
     <!-- Status Details -->
     <div class="mb-4 d-flex align-items-center justify-content-between">
-      <h3 class="mb-3">Informações do Pedido</h3>
+      <h3 class="mb-3" data-test="order-info">Informações do Pedido</h3>
       @if(currentStep === 3){
       <button class="btn btn-dark text-center animeUp" routerLink="/">
         Voltar
       </button>
       }
     </div>
-    <p>
-      <span class="text-secondary">Status do Pedido: </span>
+    <p data-test="order-status">
+      <span class="text-secondary" data-test="order-step-status"
+        >Status do Pedido:
+      </span>
       @if(currentStep === 1){ Estamos preparando o seu pedido! } @if(currentStep
       === 2){ O entregador já está a caminho com o seu pedido. } @if(currentStep
       === 3){ Pedido entregue! Bom apetite! }
@@ -60,11 +64,11 @@
       {{ checkoutService.getAddress().neighborhood }} -
       {{ checkoutService.getAddress().city }}
     </p>
-    <p>
+    <p data-test="order-total">
       <span class="text-secondary">Valor Total: </span>
       {{ cartService.totalPrice() | currency : "BRL" : "symbol" }}
     </p>
-    <p>
+    <p data-test="order-payment-method">
       <span class="text-secondary">Forma de pagamento: </span>
       {{ checkoutService.getSavedPaymentMethod() }}
     </p>
