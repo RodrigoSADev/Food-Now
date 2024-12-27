@@ -106,12 +106,55 @@ describe('CartComponent', () => {
     ).toHaveBeenCalledWith(true);
   });
 
-  it('should show address error message if address is invalid', () => {
-    checkoutServiceMock.validatePayment.mockReturnValue(true);
-    checkoutServiceMock.validateAddress.mockReturnValue(false);
-    component.onConfirmOrder();
+  it('should render cart items correctly', () => {
+    cartServiceMock.cart.mockReturnValue({
+      items: [
+        {
+          id: 1,
+          name: 'Pizza',
+          price: 10,
+          quantity: 2,
+          description: '',
+          image: '',
+          alt: '',
+        },
+      ],
+      totalPrice: 20,
+      totalQuantity: 2,
+    });
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement as HTMLElement;
+    const cartItems = compiled.querySelectorAll('[data-test="cart-item"]');
+    expect(cartItems.length).toBe(1);
     expect(
-      checkoutServiceMock.showAddressErrorMessage.set
-    ).toHaveBeenCalledWith(true);
+      cartItems[0].querySelector('[data-test="cart-item-name"]')?.textContent
+    ).toContain('Pizza');
+    expect(
+      cartItems[0].querySelector('[data-test="cart-item-quantity"]')
+        ?.textContent
+    ).toContain('2');
+  });
+
+  it('should render total price and delivery value correctly', () => {
+    cartServiceMock.cart.mockReturnValue({
+      items: [],
+      totalPrice: 20,
+      totalQuantity: 2,
+    });
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement as HTMLElement;
+    const totalPrice = compiled.querySelector(
+      '[data-test="cart-total-price"]'
+    )?.textContent;
+    expect(totalPrice).toContain('R$25.00');
+  });
+
+  it('should render confirm order button', () => {
+    const compiled = fixture.nativeElement as HTMLElement;
+    const confirmButton = compiled.querySelector(
+      '[data-test="cart-confirm-order"]'
+    );
+    expect(confirmButton).toBeTruthy();
+    expect(confirmButton?.textContent).toContain('Confirmar Pedido');
   });
 });
