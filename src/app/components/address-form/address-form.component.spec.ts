@@ -113,4 +113,67 @@ describe('AddressFormComponent', () => {
     component.onUpdateAddress();
     expect(checkoutService.showAddressErrorMessage()).toBe(false);
   });
+
+  it('should render form fields correctly', () => {
+    const compiled = fixture.nativeElement as HTMLElement;
+    const cepInput = compiled.querySelector('input[formControlName="cep"]');
+    const cityInput = compiled.querySelector('input[formControlName="city"]');
+    const neighborhoodInput = compiled.querySelector(
+      'input[formControlName="neighborhood"]'
+    );
+    const streetInput = compiled.querySelector(
+      'input[formControlName="street"]'
+    );
+    const numberInput = compiled.querySelector(
+      'input[formControlName="number"]'
+    );
+    const complementInput = compiled.querySelector(
+      'input[formControlName="complement"]'
+    );
+    const saveAddressCheckbox = compiled.querySelector(
+      'input[formControlName="saveAddress"]'
+    );
+
+    expect(cepInput).toBeTruthy();
+    expect(cityInput).toBeTruthy();
+    expect(neighborhoodInput).toBeTruthy();
+    expect(streetInput).toBeTruthy();
+    expect(numberInput).toBeTruthy();
+    expect(complementInput).toBeTruthy();
+    expect(saveAddressCheckbox).toBeTruthy();
+  });
+
+  it('should display the correct labels for form fields', () => {
+    const compiled = fixture.nativeElement as HTMLElement;
+    const cepLabel = compiled.querySelector('label[for="floatingCep"]');
+    const cityLabel = compiled.querySelector('label[for="floatingCity"]');
+    const neighborhoodLabel = compiled.querySelector(
+      'label[for="floatingNeighborhood"]'
+    );
+    const streetLabel = compiled.querySelector('label[for="flotingStreet"]');
+    const numberLabel = compiled.querySelector('label[for="floatingNumber"]');
+    const complementLabel = compiled.querySelector(
+      'label[for="floatingComplement"]'
+    );
+
+    expect(cepLabel?.textContent).toContain('CEP');
+    expect(cityLabel?.textContent).toContain('Cidade');
+    expect(neighborhoodLabel?.textContent).toContain('Bairro');
+    expect(streetLabel?.textContent).toContain('Rua');
+    expect(numberLabel?.textContent).toContain('Número');
+    expect(complementLabel?.textContent).toContain('Complemento');
+  });
+
+  it('should display an error message if address is invalid', () => {
+    checkoutService.showAddressErrorMessage.set(true);
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement as HTMLElement;
+    const errorMessage = compiled.querySelector(
+      '[data-test="address-error-message"]'
+    );
+    expect(errorMessage).toBeTruthy();
+    expect(errorMessage?.textContent).toContain(
+      'Por favor, preencha todos os campos obrigatórios do endereço.'
+    );
+  });
 });
