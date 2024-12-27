@@ -72,6 +72,10 @@ describe('FoodService', () => {
   });
 
   it('should fallback to backup API if primary API fails', () => {
+    const consoleSpy = jest
+      .spyOn(console, 'error')
+      .mockImplementation(() => {});
+
     service.getFoods().subscribe((data) => {
       expect(data).toEqual(mockFoodData);
     });
@@ -85,5 +89,7 @@ describe('FoodService', () => {
     const backupReq = httpMock.expectOne(service['apiUrlBackup']);
     expect(backupReq.request.method).toBe('GET');
     backupReq.flush(mockFoodData);
+
+    consoleSpy.mockRestore();
   });
 });
