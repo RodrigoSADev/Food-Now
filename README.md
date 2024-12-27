@@ -43,7 +43,7 @@ Este projeto segue a especificação de [Conventional Commits](https://www.conve
 
 ## CI/CD
 
-Este projeto utiliza GitHub Actions para CI/CD. O pipeline está configurado para executar os testes unitários com Jest e os testes end-to-end com Playwright. Após a execução dos testes, o projeto é implantado automaticamente no Vercel.
+Este projeto utiliza GitHub Actions para CI/CD. O pipeline está configurado para executar os testes unitários com Jest. Após a execução dos testes, o projeto é implantado automaticamente no Vercel.
 
 O arquivo de configuração do GitHub Actions pode ser encontrado em `.github/workflows/ci.yml`.
 
